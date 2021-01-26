@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "default_rds_mssql" {
-  name        = "${var.environment}-rds-mssql-subnet-group"
-  description = "${var.environment} rds-mssql private subnet group."
+  name        = "${var.environment}-${var.instance_name}-subnet-group"
+  description = "${var.environment}-${var.instance_name}e subnet group."
   subnet_ids  = var.subnet_ids
 
   tags = {
@@ -9,8 +9,8 @@ resource "aws_db_subnet_group" "default_rds_mssql" {
 }
 
 resource "aws_security_group" "rds_mssql_security_group" {
-  name        = "${var.environment}-all-rds-mssql-internal"
-  description = "${var.environment} allow all vpc traffic to rds mssql."
+  name        = "${var.environment}-${var.instance_name}-mssql-sg-group"
+  description = "${var.environment}-${var.instance_name} allow all vpc traffic to rds mssql."
   vpc_id      = "${var.vpc_id}"
 
   ingress {
